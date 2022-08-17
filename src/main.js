@@ -20,6 +20,18 @@ import dashboard from '@/module-dashboard/' // 面板
 import base from '@/module-manage/' // 用户管理
 import hmmm from '@/module-hmmm/' // 黑马面面
 
+// 使用富文本
+
+import VueQuillEditor from 'vue-quill-editor'
+
+import 'quill/dist/quill.core.css'
+
+import 'quill/dist/quill.snow.css'
+
+import 'quill/dist/quill.bubble.css'
+
+Vue.use(VueQuillEditor) // 注册富文本编辑器
+
 Vue.use(dashboard, store)
 Vue.use(base, store)
 // Vue.use(list, store)
@@ -39,6 +51,18 @@ Vue.use(Element, {
 // 过滤器
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
+})
+
+Vue.filter('dataFormat', function (originVal) {
+  const dt = new Date(originVal)
+  const y = dt.getFullYear()
+  const m = (dt.getMonth() + 1 + '').padStart(2, '0')
+  const d = (dt.getDate() + '').padStart(2, '0')
+  const hh = (dt.getHours() + '').padStart(2, '0')
+  const mm = (dt.getMinutes() + '').padStart(2, '0')
+  const ss = (dt.getSeconds() + '').padStart(2, '0')
+  // return `yyyy-mm-dd hh:mm:ss`//替换如下
+  return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
 })
 
 Vue.config.productionTip = false

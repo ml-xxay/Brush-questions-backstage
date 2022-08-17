@@ -17,6 +17,7 @@ export const simple = data => createAPI('/articles/simple', 'get', data)
 
 // 文章详情
 export const detail = data => createAPI(`/articles/${data.id}`, 'get', data)
+// export const detail = data => createAPI(`/articles/${data.id}`, 'get')
 
 // 文章添加
 export const add = data => createAPI('/articles', 'post', data)
